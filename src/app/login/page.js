@@ -1,13 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
+    const [isClient, setIsClient] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -30,6 +35,10 @@ export default function Login() {
             setError(data.error); // Show the error message
         }
     };
+
+    if (!isClient) {
+        return null; // Render nothing on the server
+    }
 
     return (
         <div className="p-6">
