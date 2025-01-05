@@ -8,10 +8,13 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [isClient, setIsClient] = useState(false);
+    const [isRouterReady, setIsRouterReady] = useState(false);  // Track if router is ready
     const router = useRouter();
 
+    // Only enable router when client-side rendering
     useEffect(() => {
         setIsClient(true);
+        setIsRouterReady(true); // Ensure router is ready in the client environment
     }, []);
 
     const handleLogin = async (e) => {
@@ -36,8 +39,8 @@ export default function Login() {
         }
     };
 
-    if (!isClient) {
-        return null; // Render nothing on the server
+    if (!isClient || !isRouterReady) {
+        return null; // Render nothing on the server or if router is not ready
     }
 
     return (
