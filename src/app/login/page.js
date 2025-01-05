@@ -1,20 +1,19 @@
-"use client";
+// app/login/page.js
+
+"use client"; // Ensure the code below runs only on the client-side
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [isClient, setIsClient] = useState(false);
-    const [isRouterReady, setIsRouterReady] = useState(false);  // Track if router is ready
     const router = useRouter();
 
-    // Only enable router when client-side rendering
     useEffect(() => {
-        setIsClient(true);
-        setIsRouterReady(true); // Ensure router is ready in the client environment
+        setIsClient(true); // We are now on the client side
     }, []);
 
     const handleLogin = async (e) => {
@@ -39,8 +38,8 @@ export default function Login() {
         }
     };
 
-    if (!isClient || !isRouterReady) {
-        return null; // Render nothing on the server or if router is not ready
+    if (!isClient) {
+        return null; // This ensures the component renders only on the client
     }
 
     return (
