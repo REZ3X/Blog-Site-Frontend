@@ -1,4 +1,5 @@
-// components/BlogForm.js
+"use client";
+
 import { useState } from "react";
 
 export default function BlogForm({ onSubmit, existingData = {} }) {

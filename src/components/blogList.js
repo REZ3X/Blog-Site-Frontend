@@ -1,4 +1,5 @@
-// components/BlogList.js
+"use cleint";
+
 import { useState, useEffect } from "react";
 
 const BlogList = () => {

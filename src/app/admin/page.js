@@ -1,4 +1,5 @@
-// pages/admin/index.js
+"use client";
+
 import { useState, useEffect } from "react";
 import BlogForm from "../../components/admin_components/blogsForm";
 import BlogList from "../../components/admin_components/blogList";
